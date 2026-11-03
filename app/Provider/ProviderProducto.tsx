@@ -51,11 +51,16 @@ export default function ProviderProducto({ children }: Plantilla) {
         setCarritoProducto([...carritoProducto, producto])
     }
 
+    function eliminarCarrito(producto: Producto) {
+        alert('Producto Eliminado del carrito')
+        setCarritoProducto(carritoProducto.filter((item) => item.idProducto !== producto.idProducto))
+    }
+
 
 
 
     return (
-        <ContexrProducto.Provider value={{ producto, carritoProducto, agregarCarrito }}>
+        <ContexrProducto.Provider value={{ producto, carritoProducto, agregarCarrito, eliminarCarrito }}>
             {children}
         </ContexrProducto.Provider>
     )

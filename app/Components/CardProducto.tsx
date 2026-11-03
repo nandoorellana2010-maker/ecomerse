@@ -1,23 +1,26 @@
 import React from 'react'
-import { Producto } from '../modelos/Producto'
 import { useContextProducto } from '../Provider/ProviderProducto'
 
-export default function CardProducto(producto: Producto) {
+export default function CardProducto() {
 
-    const { agregarCarrito } = useContextProducto()
+    const {producto, agregarCarrito } = useContextProducto()
+    const { eliminarCarrito } = useContextProducto()
     return (
-        <div className='card'>
-            <div className='card-header'>{producto.nombreProducto}</div>
+        <>{producto.map((item) =>(
+        <div className='card' key={item.idProducto}>
+            <div className='card-header'>{item.nombreProducto}</div>
             <div className='card-body'>
-                <p>Precio Producto - Lps {producto.precioProducto}</p>
-                <p>Isv Producto - Lps {producto.isvProducto}</p>
-                <img src={producto.imgProducto} />
+                <p>Precio Producto - Lps {item.precioProducto}</p>
+                <p>Isv Producto - Lps {item.isvProducto}</p>
+                <img src={item.imgProducto} alt={item.nombreProducto}/>
 
             </div>
             <div className='card-footer'>
-                <button className='btn btn-info btn-sm' onClick={() => agregarCarrito(producto)}>Agregar al Carrito</button>
-                <button className='btn btn-danger btn-sm' >Eliminar</button>
+                <button className='btn btn-info btn-sm' onClick={() => agregarCarrito(item)}>Agregar al Carrito</button>
+                <button className='btn btn-danger btn-sm' onClick={()=> eliminarCarrito(item)}>Eliminar</button>
             </div>
         </div>
+        ))}
+        </>
     )
 }
