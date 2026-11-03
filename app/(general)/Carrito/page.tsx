@@ -1,33 +1,12 @@
 'use client'
 import CardProducto from '@/app/Components/CardProducto';
-import { Producto } from '@/app/modelos/Producto';
-import { useContextProducto } from '@/app/Provider/ProviderProducto'
-import React from 'react'
 
-export default function page() {
-
-    const { carritoProducto, agregarCarrito } = useContextProducto();
-
-
+export default function Page() {
     return (
         <div className='container'>
             <div className='row'>
-                {
-
-                    carritoProducto.map((producto: Producto) => (
-                        <div className='col-md-4' key={producto.idProducto}>
-
-                            <CardProducto {...producto} ></CardProducto>
-                            <br />
-
-                        </div>
-
-                    ))
-                }
-
+                <CardProducto vista='carrito' />
             </div>
-
-
         </div>
     )
 }

@@ -5,5 +5,5 @@ export const ContexrProducto = createContext({
     producto: [] as Producto[],
     carritoProducto: [] as Producto[],
     agregarCarrito: (producto: Producto) => {},
-    eliminarCarrito: (producto: Producto) => {}
+    eliminarCarrito: (idProducto: number) => {}
 })
